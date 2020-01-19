@@ -1,0 +1,31 @@
+.listbox {
+  border: 1px solid slategrey;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+}
+
+.categories {
+  border-bottom: 1px solid slategrey;
+}
+
+.categoryBtn {
+  background: none;
+  border: none;
+  line-height: 0;
+  padding: 2px;
+  margin: 2px 1px;
+  border-radius: 3px;
+}
+
+.categoryBtn:hover {
+  background: gainsboro;
+}
+
+.search {
+  border: 1px solid slategrey;
+  border-radius: 3px;
+  display: block;
+  margin: 6px;
+  padding: 3px;
+}
