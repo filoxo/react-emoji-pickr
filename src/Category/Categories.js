@@ -8,5 +8,6 @@ export default {
   THINGS: "Things",
   SYMBOLS: "Symbols",
   FLAGS: "Flags",
-  SPECIAL: "SpecialCharacters"
+  SPECIAL: "SpecialCharacters",
+  ACTIVITIES: "Activities"
 };
