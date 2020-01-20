@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import EmojiPicker from "react-emoji-pickr.esm";
+import "react-emoji-pickr.esm.css";
 
 const App = () => {
   return (
