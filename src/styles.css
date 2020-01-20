@@ -6,6 +6,8 @@
 [data-emoji-listbox] {
   border: 1px solid slategrey;
   border-radius: 3px;
+  display: flex;
+  flex-direction: column;
 }
 
 [data-emoji-category-tab] {
@@ -31,6 +33,6 @@
 [data-emoji-searchinput] {
   border: 1px solid slategrey;
   border-radius: 3px;
-  margin: 3px;
-  padding: 2px;
+  margin: 4px;
+  padding: 4px;
 }
