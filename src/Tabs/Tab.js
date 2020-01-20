@@ -7,6 +7,7 @@ export function Tab({ label, id, ...props }) {
   return (
     <button
       {...props}
+      data-emoji-category-tab
       role="tab"
       id={id}
       aria-selected={isSelected}
