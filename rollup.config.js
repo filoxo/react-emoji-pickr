@@ -35,7 +35,7 @@ export default [
         exclude: "node_modules/**"
       }),
       postcss({
-        modules: true
+        extract: true
       }),
       prod && terser(),
       prod && filesize()
@@ -67,9 +67,7 @@ export default [
         template: "demo/src/index.html",
         target: "demo/index.html"
       }),
-      postcss({
-        modules: true
-      }),
+      postcss(),
       !prod && serve("demo"),
       !prod && livereload(["dist", "demo"])
     ]
