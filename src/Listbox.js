@@ -17,8 +17,6 @@ export function Listbox(props) {
         />
         <CategoriesTabpanels />
       </Tabs>
-      {/* Recently used */}
-      {/* Scrollable list of all */}
     </div>
   );
 }
