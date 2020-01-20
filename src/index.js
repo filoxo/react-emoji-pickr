@@ -2,6 +2,8 @@ import React from "react";
 import { Trigger } from "./Trigger";
 import { Listbox } from "./Listbox";
 
+import "./styles.css";
+
 export default function ReactEmojiPickr(props) {
   const [isOpen, setIsOpen] = React.useState(false);
   const trigger = React.cloneElement(React.Children.only(props.children), {

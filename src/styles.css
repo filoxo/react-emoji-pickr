@@ -1,0 +1,36 @@
+[data-emoji-trigger] {
+  border: 1px solid slategrey;
+  border-radius: 3px;
+}
+
+[data-emoji-listbox] {
+  border: 1px solid slategrey;
+  border-radius: 3px;
+}
+
+[data-emoji-category-tab] {
+  border: none;
+  border-radius: 3px;
+  background: none;
+  line-height: 0;
+  margin: 0 1px;
+  padding: 2px;
+}
+
+[data-emoji-category-tab]:hover,
+[data-emoji-category-tab]:focus {
+  background: gainsboro;
+}
+
+[data-emoji-category-tablist] {
+  border-bottom: 1px solid slategrey;
+  display: flex;
+  padding: 1px 0;
+}
+
+[data-emoji-searchinput] {
+  border: 1px solid slategrey;
+  border-radius: 3px;
+  margin: 3px;
+  padding: 2px;
+}
