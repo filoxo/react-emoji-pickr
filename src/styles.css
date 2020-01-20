@@ -19,15 +19,34 @@
   padding: 2px;
 }
 
-[data-emoji-category-tab]:hover,
-[data-emoji-category-tab]:focus {
+[data-emoji-category-tab]:hover {
   background: gainsboro;
+}
+
+[data-emoji-category-tab][aria-selected="true"] {
+  position: relative;
+}
+
+[data-emoji-category-tab][aria-selected="true"] {
+  fill: steelblue;
+}
+
+[data-emoji-category-tab][aria-selected="true"]::after {
+  content: "";
+  display: block;
+  width: 100%;
+  border-bottom: 2px solid steelblue;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
 }
 
 [data-emoji-category-tablist] {
   border-bottom: 1px solid slategrey;
   display: flex;
-  padding: 1px 0;
+  padding: 2px 1px;
 }
 
 [data-emoji-searchinput] {
