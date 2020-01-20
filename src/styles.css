@@ -10,17 +10,32 @@
   flex-direction: column;
 }
 
+[data-emoji-button],
 [data-emoji-category-tab] {
   border: none;
   border-radius: 3px;
   background: none;
-  line-height: 0;
-  margin: 0 1px;
   padding: 2px;
 }
 
+[data-emoji-button]:hover,
 [data-emoji-category-tab]:hover {
   background: gainsboro;
+}
+
+[data-emoji-category-tab] {
+  line-height: 0;
+  margin: 0 1px;
+}
+
+[data-emoji-button] {
+  font-size: 18px;
+  line-height: 1.3;
+}
+
+[data-emoji-button]::before {
+  content: "";
+  padding-left: 3px;
 }
 
 [data-emoji-category-tab][aria-selected="true"] {
@@ -54,4 +69,14 @@
   border-radius: 3px;
   margin: 4px;
   padding: 4px;
+}
+
+[data-emoji-list] {
+  display: grid;
+  grid-template-columns: repeat(7, 28px);
+  grid-template-rows: auto;
+  grid-column-gap: 3px;
+  max-height: 200px;
+  overflow-x: scroll;
+  padding: 2px 4px;
 }
