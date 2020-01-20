@@ -7,6 +7,16 @@ export default function CategoryTabpanels(props) {
     <div>
       <Tabs.Tabpanel id={CATEGORIES.ALL}>All content</Tabs.Tabpanel>
       <Tabs.Tabpanel id={CATEGORIES.FACES}>Faces content</Tabs.Tabpanel>
+      <Tabs.Tabpanel id={CATEGORIES.ANIMALS}>Animals content</Tabs.Tabpanel>
+      <Tabs.Tabpanel id={CATEGORIES.FOODS}>Foods content</Tabs.Tabpanel>
+      <Tabs.Tabpanel id={CATEGORIES.SPORTS}>Sports content</Tabs.Tabpanel>
+      <Tabs.Tabpanel id={CATEGORIES.VEHICLES}>Vehicles content</Tabs.Tabpanel>
+      <Tabs.Tabpanel id={CATEGORIES.THINGS}>Things content</Tabs.Tabpanel>
+      <Tabs.Tabpanel id={CATEGORIES.SYMBOLS}>Symbols content</Tabs.Tabpanel>
+      <Tabs.Tabpanel id={CATEGORIES.FLAGS}>Flags content</Tabs.Tabpanel>
+      <Tabs.Tabpanel id={CATEGORIES.SPECIAL}>
+        Special chars content
+      </Tabs.Tabpanel>
     </div>
   );
 }
