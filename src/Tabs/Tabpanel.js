@@ -12,6 +12,7 @@ export function Tabpanel({ children, id, ...props }) {
       aria-labelledby={id}
       tabIndex="0"
       hidden={!isSelected}
+      data-emoji-list
     >
       {isSelected && children}
     </div>
