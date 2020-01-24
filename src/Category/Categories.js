@@ -1,13 +1,12 @@
 export default {
+  ACTIVITIES: "Activities",
   ALL: "All",
-  FACES: "Faces",
   ANIMALS: "Animals",
-  FOODS: "Foods",
-  SPORTS: "Sports",
-  VEHICLES: "Vehicles",
-  THINGS: "Things",
-  SYMBOLS: "Symbols",
+  FACES: "Faces and people",
   FLAGS: "Flags",
-  SPECIAL: "SpecialCharacters",
-  ACTIVITIES: "Activities"
+  FOODS: "Food and drink",
+  NATURE: "Nature",
+  OBJECTS: "Objects",
+  SYMBOLS: "Symbols",
+  TRAVEL_AND_PLACES: "Travel and places"
 };
