@@ -71,7 +71,7 @@
   padding: 4px;
 }
 
-[data-emoji-list] {
+[data-emoji-list]:not([hidden]) {
   display: grid;
   grid-template-columns: repeat(7, 28px);
   grid-template-rows: auto;
