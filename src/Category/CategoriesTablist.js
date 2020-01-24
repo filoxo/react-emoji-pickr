@@ -13,39 +13,58 @@ import {
   IconFlags,
   IconCustom
 } from "../Icons";
+import { toId } from "../utils";
 
 export default function CategoriesTablist(props) {
   return (
     <Tabs.Tablist aria-label="Emoji Categories" data-emoji-category-tablist>
-      <Tabs.Tab id={CATEGORIES.ALL} label="Recent and all emoji">
+      <Tabs.Tab id={toId(CATEGORIES.ALL)} label="Recent and all emoji">
         <IconRecent />
       </Tabs.Tab>
-      <Tabs.Tab id={CATEGORIES.FACES} label="People emoji">
+      <Tabs.Tab id={toId(CATEGORIES.FACES)} label={CATEGORIES.FACES + " emoji"}>
         <IconPeople />
       </Tabs.Tab>
-      <Tabs.Tab id={CATEGORIES.ANIMALS} label="Animals emoji">
+      <Tabs.Tab
+        id={toId(CATEGORIES.ANIMALS)}
+        label={CATEGORIES.ANIMALS + " emoji"}
+      >
         <IconNature />
       </Tabs.Tab>
-      <Tabs.Tab id={CATEGORIES.FOODS} label="Foods emoji">
+      <Tabs.Tab id={toId(CATEGORIES.FOODS)} label={CATEGORIES.FOODS + " emoji"}>
         <IconFoods />
       </Tabs.Tab>
-      <Tabs.Tab id={CATEGORIES.SPORTS} label="Sports emoji">
+      <Tabs.Tab
+        id={toId(CATEGORIES.ACTIVITIES)}
+        label={CATEGORIES.ACTIVITIES + " emoji"}
+      >
         <IconActivity />
       </Tabs.Tab>
-      <Tabs.Tab id={CATEGORIES.VEHICLES} label="Places emoji">
+      <Tabs.Tab
+        id={toId(CATEGORIES.TRAVEL_AND_PLACES)}
+        label={CATEGORIES.TRAVEL_AND_PLACES + " emoji"}
+      >
         <IconPlaces />
       </Tabs.Tab>
-      <Tabs.Tab id={CATEGORIES.THINGS} label="Objects emoji">
+      <Tabs.Tab
+        id={toId(CATEGORIES.NATURE)}
+        label={CATEGORIES.NATURE + " emoji"}
+      >
+        <IconCustom />
+      </Tabs.Tab>
+      <Tabs.Tab
+        id={toId(CATEGORIES.OBJECTS)}
+        label={CATEGORIES.OBJECTS + " emoji"}
+      >
         <IconObjects />
       </Tabs.Tab>
-      <Tabs.Tab id={CATEGORIES.SYMBOLS} label="Symbols emoji">
+      <Tabs.Tab
+        id={toId(CATEGORIES.SYMBOLS)}
+        label={CATEGORIES.SYMBOLS + " emoji"}
+      >
         <IconSymbols />
       </Tabs.Tab>
-      <Tabs.Tab id={CATEGORIES.FLAGS} label="Flags emoji">
+      <Tabs.Tab id={toId(CATEGORIES.FLAGS)} label={CATEGORIES.FLAGS + " emoji"}>
         <IconFlags />
-      </Tabs.Tab>
-      <Tabs.Tab id={CATEGORIES.SPECIAL} label="Special emoji">
-        <IconCustom />
       </Tabs.Tab>
     </Tabs.Tablist>
   );
