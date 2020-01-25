@@ -9,12 +9,6 @@ export function Listbox(props) {
     <div data-emoji-listbox>
       <Tabs initialTab={CATEGORIES.ALL}>
         <CategoriesTablist />
-        <input
-          type="text"
-          placeholder="Search..."
-          autoFocus
-          data-emoji-searchinput
-        />
         <CategoriesTabpanels />
       </Tabs>
     </div>
