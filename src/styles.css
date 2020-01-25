@@ -61,6 +61,7 @@
 [data-emoji-category-tablist] {
   border-bottom: 1px solid slategrey;
   display: flex;
+  justify-content: space-evenly;
   padding: 2px 1px;
 }
 
