@@ -45,12 +45,12 @@ export default function CategoriesTablist(props) {
       >
         <IconPlaces />
       </Tabs.Tab>
-      <Tabs.Tab
+      {/* <Tabs.Tab
         id={toId(CATEGORIES.NATURE)}
         label={CATEGORIES.NATURE + " emoji"}
       >
         <IconCustom />
-      </Tabs.Tab>
+      </Tabs.Tab> */}
       <Tabs.Tab
         id={toId(CATEGORIES.OBJECTS)}
         label={CATEGORIES.OBJECTS + " emoji"}
