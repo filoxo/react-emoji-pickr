@@ -6,8 +6,6 @@
 [data-emoji-listbox] {
   border: 1px solid slategrey;
   border-radius: 3px;
-  display: flex;
-  flex-direction: column;
 }
 
 [data-emoji-button],
@@ -26,6 +24,11 @@
 [data-emoji-category-tab] {
   line-height: 0;
   margin: 0 1px;
+}
+
+[data-emoji-list] {
+  display: flex;
+  flex-direction: column;
 }
 
 [data-emoji-button] {
@@ -68,11 +71,11 @@
 [data-emoji-searchinput] {
   border: 1px solid slategrey;
   border-radius: 3px;
-  margin: 4px;
-  padding: 4px;
+  margin: 6px;
+  padding: 4px 6px;
 }
 
-[data-emoji-list]:not([hidden]) {
+[data-emoji-scroll-list]:not([hidden]) {
   display: grid;
   grid-template-columns: repeat(7, 28px);
   grid-template-rows: auto;
