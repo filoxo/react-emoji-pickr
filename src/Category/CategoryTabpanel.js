@@ -9,7 +9,6 @@ export default function CategoryTabpanels({ category, emoji }) {
       <input
         type="text"
         placeholder={`Search ${category}...`}
-        autoFocus
         data-emoji-searchinput
       />
       <div data-emoji-scroll-list>
