@@ -1603,9 +1603,9 @@ export const SKIN_TONES = [
 ];
 
 export const ALL = [
+  ...FACES_AND_PEOPLE,
   ...ACTIVITIES,
   ...ANIMALS,
-  ...FACES_AND_PEOPLE,
   ...FLAGS,
   ...FOOD_AND_DRINK,
   ...OBJECTS,
