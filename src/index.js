@@ -1,6 +1,9 @@
 import React from "react";
 import { Trigger } from "./Trigger";
-import { Listbox } from "./Listbox";
+import Tabs from "./Tabs";
+import CATEGORIES from "./Category/Categories";
+import CategoriesTablist from "./Category/CategoriesTablist";
+import CategoriesTabpanels from "./Category/CategoryTabpanels";
 
 import "./styles.css";
 
@@ -15,7 +18,14 @@ export default function ReactEmojiPickr(props) {
   return (
     <React.Fragment>
       {trigger}
-      {isOpen && <Listbox />}
+      {isOpen && (
+        <div data-emoji-listbox>
+          <Tabs initialTab={CATEGORIES.ALL}>
+            <CategoriesTablist />
+            <CategoriesTabpanels />
+          </Tabs>
+        </div>
+      )}
     </React.Fragment>
   );
 }
@@ -35,4 +45,4 @@ ReactEmojiPickr.propTypes = {
 };
 
 ReactEmojiPickr.Trigger = Trigger;
-ReactEmojiPickr.Listbox = Listbox;
+// ReactEmojiPickr.Listbox = Listbox;
