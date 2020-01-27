@@ -15,7 +15,7 @@ const App = () => {
         height: "100vh"
       }}
     >
-      <EmojiPicker>
+      <EmojiPicker onEmojiSelect={e => console.log(e.target.value)}>
         <EmojiPicker.Trigger>:D</EmojiPicker.Trigger>
       </EmojiPicker>
     </div>

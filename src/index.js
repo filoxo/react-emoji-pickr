@@ -22,7 +22,7 @@ export default function ReactEmojiPickr(props) {
         <div data-emoji-listbox>
           <Tabs initialTab={CATEGORIES.ALL}>
             <CategoriesTablist />
-            <CategoriesTabpanels />
+            <CategoriesTabpanels onClick={props.onEmojiSelect} />
           </Tabs>
         </div>
       )}
@@ -45,4 +45,3 @@ ReactEmojiPickr.propTypes = {
 };
 
 ReactEmojiPickr.Trigger = Trigger;
-// ReactEmojiPickr.Listbox = Listbox;
