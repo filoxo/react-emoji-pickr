@@ -16,7 +16,9 @@ const App = () => {
       }}
     >
       <EmojiPicker onEmojiSelect={e => console.log(e.target.value)}>
-        <EmojiPicker.Trigger>:D</EmojiPicker.Trigger>
+        <EmojiPicker.Trigger aria-label="Select an emoji" id="emojiBtnTrigger">
+          :D
+        </EmojiPicker.Trigger>
       </EmojiPicker>
     </div>
   );
