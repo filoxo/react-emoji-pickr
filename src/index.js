@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { Trigger } from "./Trigger";
 import Tabs from "./Tabs";
 import CATEGORIES from "./Category/Categories";
@@ -15,11 +15,23 @@ export default function ReactEmojiPickr(props) {
       setIsOpen(!isOpen);
     }
   });
+  const triggerRef = useRef();
+
+  useEffect(() => {
+    triggerRef.current = document.getElementById(trigger.props.id);
+  }, []);
+
+  const handleKeyboardClose = ({ key }) => {
+    if (key === "Escape") {
+      triggerRef.current && triggerRef.current.focus();
+      setIsOpen(false);
+    }
+  };
   return (
     <React.Fragment>
       {trigger}
       {isOpen && (
-        <div data-emoji-listbox>
+        <div onKeyDown={handleKeyboardClose} data-emoji-listbox>
           <Tabs initialTab={CATEGORIES.ALL}>
             <CategoriesTablist />
             <CategoriesTabpanels onClick={props.onEmojiSelect} />
