@@ -5,10 +5,9 @@ import Tabs from "./Tabs";
 import CATEGORIES from "./Category/Categories";
 import CategoriesTablist from "./Category/CategoriesTablist";
 import CategoriesTabpanels from "./Category/CategoryTabpanels";
+import { toPx } from "./utils";
 
 import "./styles.css";
-
-const toPx = (v) => `${v}px`;
 
 export default function ReactEmojiPickr(props) {
   const [isOpen, setIsOpen] = React.useState(false);
