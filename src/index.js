@@ -1,4 +1,4 @@
-import React, { useRef, useLayoutEffect } from "react";
+import React, { useRef, useLayoutEffect, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Trigger } from "./Trigger";
 import Tabs from "./Tabs";
@@ -22,6 +22,7 @@ export default function ReactEmojiPickr(props) {
     ref: triggerRef,
   });
 
+  // TODO: maybe expose this as a prop so that consumers can provide their own logic?
   const positionAndAlignListbox = () => {
     const triggerRect = triggerRef.current.getBoundingClientRect();
     const alignAxisVertical =
@@ -101,6 +102,17 @@ export default function ReactEmojiPickr(props) {
       };
     }
   }, [isOpen, props]);
+
+  useEffect(() => {
+    if (isOpen) {
+      const firstFocusableElem =
+        listboxRef.current &&
+        listboxRef.current.querySelector(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+      if (firstFocusableElem) firstFocusableElem.focus();
+    }
+  }, [isOpen]);
 
   const handleKeyboardClose = ({ key }) => {
     if (key === "Escape") {
