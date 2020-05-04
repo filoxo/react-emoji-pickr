@@ -1,41 +1,43 @@
-import React from "react";
+import React, { useRef, useCallback } from "react";
 import Tabs from "../Tabs/";
-import { toId } from "../utils";
+import { toId, getNthSibling } from "../utils";
 
 export default function CategoryTabpanel({ category, emoji, onClick }) {
-  const handleEmojiClick = e => {
+  const buttonsPerRow = useRef(1);
+  const containerWatchRef = useCallback((node) => {
+    if (node !== null) {
+      const containerWidth = node.getBoundingClientRect().width;
+      const buttonWidth = node
+        .querySelector("[data-emoji-button]")
+        .getBoundingClientRect().width;
+      buttonsPerRow.current = Math.floor(containerWidth / buttonWidth);
+    }
+  }, []);
+  const handleEmojiClick = (e) => {
     if (e.target.hasAttribute("data-emoji-button")) {
       e.target.value = e.target.innerText;
       onClick(e);
     }
   };
-  const getDelta = key => {
-    // TODO: find a better API to allow users to control this
+  const getFocusTarget = (target, key) => {
     switch (key) {
       case "ArrowUp":
-        return -7;
+        return getNthSibling(target, -buttonsPerRow.current);
       case "ArrowDown":
-        return 7;
+        return getNthSibling(target, buttonsPerRow.current);
       case "ArrowLeft":
-        return -1;
+        return target.previousElementSibling;
       case "ArrowRight":
-        return 1;
+        return target.nextElementSibling;
       default:
         return;
     }
   };
-  const handleEmojiNavigation = e => {
-    const delta = getDelta(e.key);
-    if (delta !== undefined) {
-      const emojiIndex = parseInt(e.target.dataset.emojiListIndex, 10);
-      const nextEmojiIndex = emojiIndex + delta;
-      const nextEmoji = document.querySelector(
-        `[data-emoji-list-index="${nextEmojiIndex}"]`
-      );
-      if (nextEmoji) {
-        e.preventDefault();
-        nextEmoji.focus();
-      }
+  const handleEmojiKeyboardNavigation = (e) => {
+    const nextTarget = getFocusTarget(e.target, e.key);
+    if (nextTarget) {
+      e.preventDefault();
+      nextTarget.focus();
     }
   };
   return (
@@ -43,19 +45,19 @@ export default function CategoryTabpanel({ category, emoji, onClick }) {
       <input
         type="text"
         placeholder={`Search ${category}...`}
-        data-emoji-searchinput
+        data-emoji-searchinput=""
       />
       <div
-        data-emoji-scroll-list
-        data-emoji-width-count="6"
+        data-emoji-scroll-list=""
+        ref={containerWatchRef}
         onClick={handleEmojiClick}
-        onKeyDown={handleEmojiNavigation}
+        onKeyDown={handleEmojiKeyboardNavigation}
       >
         {emoji.map(([emoji, names], index) => (
           <button
             key={emoji}
             type="button"
-            data-emoji-button
+            data-emoji-button=""
             data-emoji-list-index={index}
             aria-label={names.join(" ")}
           >
