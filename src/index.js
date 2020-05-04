@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useLayoutEffect } from "react";
+import React, { useRef, useLayoutEffect } from "react";
 import PropTypes from "prop-types";
 import { Trigger } from "./Trigger";
 import Tabs from "./Tabs";
@@ -12,14 +12,16 @@ const toPx = (v) => `${v}px`;
 
 export default function ReactEmojiPickr(props) {
   const [isOpen, setIsOpen] = React.useState(false);
+  const triggerRef = useRef();
+  const listboxRef = useRef();
+
   const trigger = React.cloneElement(React.Children.only(props.children), {
     "aria-expanded": isOpen ? "true" : null,
     onClick: (e) => {
       setIsOpen(!isOpen);
     },
+    ref: triggerRef,
   });
-  const triggerRef = useRef();
-  const listboxRef = useRef();
 
   const positionAndAlignListbox = () => {
     const triggerRect = triggerRef.current.getBoundingClientRect();
@@ -83,10 +85,6 @@ export default function ReactEmojiPickr(props) {
       listboxRef.current.style[s] = style[s];
     }
   };
-
-  useEffect(() => {
-    triggerRef.current = document.getElementById(trigger.props.id);
-  }, []);
 
   useLayoutEffect(() => {
     if (isOpen) {

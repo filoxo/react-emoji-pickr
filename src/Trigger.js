@@ -1,5 +1,5 @@
 import React from "react";
 
-export function Trigger(props) {
-  return <button {...props} type="button" data-emoji-trigger />;
-}
+export const Trigger = React.forwardRef(function Trigger(props, ref) {
+  return <button {...props} ref={ref} type="button" data-emoji-trigger />;
+});
