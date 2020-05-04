@@ -1,5 +1,5 @@
 
-(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.head.appendChild(r) })(window.document);
+(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(require('react'), require('react-dom')) :
   typeof define === 'function' && define.amd ? define(['react', 'react-dom'], factory) :
@@ -7,9 +7,11 @@
 }(this, (function (React, ReactDOM) { 'use strict';
 
   var React__default = 'default' in React ? React['default'] : React;
-  ReactDOM = ReactDOM && ReactDOM.hasOwnProperty('default') ? ReactDOM['default'] : ReactDOM;
+  ReactDOM = ReactDOM && Object.prototype.hasOwnProperty.call(ReactDOM, 'default') ? ReactDOM['default'] : ReactDOM;
 
   function _typeof(obj) {
+    "@babel/helpers - typeof";
+
     if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
       _typeof = function (obj) {
         return typeof obj;
@@ -78,7 +80,7 @@
   }
 
   function _slicedToArray(arr, i) {
-    return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();
+    return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
   }
 
   function _arrayWithHoles(arr) {
@@ -86,10 +88,7 @@
   }
 
   function _iterableToArrayLimit(arr, i) {
-    if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) {
-      return;
-    }
-
+    if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
     var _arr = [];
     var _n = true;
     var _d = false;
@@ -115,8 +114,25 @@
     return _arr;
   }
 
+  function _unsupportedIterableToArray(o, minLen) {
+    if (!o) return;
+    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+    var n = Object.prototype.toString.call(o).slice(8, -1);
+    if (n === "Object" && o.constructor) n = o.constructor.name;
+    if (n === "Map" || n === "Set") return Array.from(o);
+    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+  }
+
+  function _arrayLikeToArray(arr, len) {
+    if (len == null || len > arr.length) len = arr.length;
+
+    for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+
+    return arr2;
+  }
+
   function _nonIterableRest() {
-    throw new TypeError("Invalid attempt to destructure non-iterable instance");
+    throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
   }
 
   function _extends$1() {
@@ -174,7 +190,7 @@
   }
 
   function _slicedToArray$1(arr, i) {
-    return _arrayWithHoles$1(arr) || _iterableToArrayLimit$1(arr, i) || _nonIterableRest$1();
+    return _arrayWithHoles$1(arr) || _iterableToArrayLimit$1(arr, i) || _unsupportedIterableToArray$1(arr, i) || _nonIterableRest$1();
   }
 
   function _arrayWithHoles$1(arr) {
@@ -182,10 +198,7 @@
   }
 
   function _iterableToArrayLimit$1(arr, i) {
-    if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) {
-      return;
-    }
-
+    if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
     var _arr = [];
     var _n = true;
     var _d = false;
@@ -211,8 +224,27 @@
     return _arr;
   }
 
+  function _unsupportedIterableToArray$1(o, minLen) {
+    if (!o) return;
+    if (typeof o === "string") return _arrayLikeToArray$1(o, minLen);
+    var n = Object.prototype.toString.call(o).slice(8, -1);
+    if (n === "Object" && o.constructor) n = o.constructor.name;
+    if (n === "Map" || n === "Set") return Array.from(o);
+    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray$1(o, minLen);
+  }
+
+  function _arrayLikeToArray$1(arr, len) {
+    if (len == null || len > arr.length) len = arr.length;
+
+    for (var i = 0, arr2 = new Array(len); i < len; i++) {
+      arr2[i] = arr[i];
+    }
+
+    return arr2;
+  }
+
   function _nonIterableRest$1() {
-    throw new TypeError("Invalid attempt to destructure non-iterable instance");
+    throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
   }
 
   function unwrapExports(x) {
@@ -1492,7 +1524,7 @@
   });
 
   function Trigger(props) {
-    return React__default.createElement("button", _extends$1({}, props, {
+    return /*#__PURE__*/React__default.createElement("button", _extends$1({}, props, {
       type: "button",
       "data-emoji-trigger": true
     }));
@@ -1513,7 +1545,7 @@
         setCurrentTab = _useContext.setCurrentTab;
 
     var isSelected = id === currentTab;
-    return React__default.createElement("button", _extends$1({}, props, {
+    return /*#__PURE__*/React__default.createElement("button", _extends$1({}, props, {
       "data-emoji-category-tab": true,
       role: "tab",
       id: id,
@@ -1556,7 +1588,7 @@
       }
     };
 
-    return React__default.createElement("div", _extends$1({}, props, {
+    return /*#__PURE__*/React__default.createElement("div", _extends$1({}, props, {
       ref: tablistRef,
       onKeyDown: handleKeypress,
       role: "tablist"
@@ -1572,7 +1604,7 @@
         currentTab = _useContext.currentTab;
 
     var isSelected = currentTab === id;
-    return React__default.createElement("div", _extends$1({}, props, {
+    return /*#__PURE__*/React__default.createElement("div", _extends$1({}, props, {
       role: "tabpanel",
       id: id + "-panel",
       "aria-labelledby": id,
@@ -1592,7 +1624,7 @@
         currentTab = _useState2[0],
         setCurrentTab = _useState2[1];
 
-    return React__default.createElement(TabContext.Provider, {
+    return /*#__PURE__*/React__default.createElement(TabContext.Provider, {
       value: {
         currentTab: currentTab,
         setCurrentTab: setCurrentTab
@@ -1620,12 +1652,12 @@
     return function (_ref) {
       var _ref$size = _ref.size,
           size = _ref$size === void 0 ? 16 : _ref$size;
-      return React__default.createElement("svg", {
+      return /*#__PURE__*/React__default.createElement("svg", {
         xmlns: "http://www.w3.org/2000/svg",
         viewBox: "0 0 24 24",
         width: size,
         height: size
-      }, React__default.createElement("path", {
+      }, /*#__PURE__*/React__default.createElement("path", {
         d: pathD
       }));
     };
@@ -1646,37 +1678,37 @@
   };
 
   function CategoriesTablist(props) {
-    return React__default.createElement(Tabs.Tablist, {
+    return /*#__PURE__*/React__default.createElement(Tabs.Tablist, {
       "aria-label": "Emoji Categories",
       "data-emoji-category-tablist": true
-    }, React__default.createElement(Tabs.Tab, {
+    }, /*#__PURE__*/React__default.createElement(Tabs.Tab, {
       id: toId(CATEGORIES.ALL),
       label: "Recent and all emoji"
-    }, React__default.createElement(IconRecent, null)), React__default.createElement(Tabs.Tab, {
+    }, /*#__PURE__*/React__default.createElement(IconRecent, null)), /*#__PURE__*/React__default.createElement(Tabs.Tab, {
       id: toId(CATEGORIES.FACES),
       label: CATEGORIES.FACES + " emoji"
-    }, React__default.createElement(IconPeople, null)), React__default.createElement(Tabs.Tab, {
+    }, /*#__PURE__*/React__default.createElement(IconPeople, null)), /*#__PURE__*/React__default.createElement(Tabs.Tab, {
       id: toId(CATEGORIES.ANIMALS),
       label: CATEGORIES.ANIMALS + " emoji"
-    }, React__default.createElement(IconNature, null)), React__default.createElement(Tabs.Tab, {
+    }, /*#__PURE__*/React__default.createElement(IconNature, null)), /*#__PURE__*/React__default.createElement(Tabs.Tab, {
       id: toId(CATEGORIES.FOODS),
       label: CATEGORIES.FOODS + " emoji"
-    }, React__default.createElement(IconFoods, null)), React__default.createElement(Tabs.Tab, {
+    }, /*#__PURE__*/React__default.createElement(IconFoods, null)), /*#__PURE__*/React__default.createElement(Tabs.Tab, {
       id: toId(CATEGORIES.ACTIVITIES),
       label: CATEGORIES.ACTIVITIES + " emoji"
-    }, React__default.createElement(IconActivity, null)), React__default.createElement(Tabs.Tab, {
+    }, /*#__PURE__*/React__default.createElement(IconActivity, null)), /*#__PURE__*/React__default.createElement(Tabs.Tab, {
       id: toId(CATEGORIES.TRAVEL_AND_PLACES),
       label: CATEGORIES.TRAVEL_AND_PLACES + " emoji"
-    }, React__default.createElement(IconPlaces, null)), React__default.createElement(Tabs.Tab, {
+    }, /*#__PURE__*/React__default.createElement(IconPlaces, null)), /*#__PURE__*/React__default.createElement(Tabs.Tab, {
       id: toId(CATEGORIES.OBJECTS),
       label: CATEGORIES.OBJECTS + " emoji"
-    }, React__default.createElement(IconObjects, null)), React__default.createElement(Tabs.Tab, {
+    }, /*#__PURE__*/React__default.createElement(IconObjects, null)), /*#__PURE__*/React__default.createElement(Tabs.Tab, {
       id: toId(CATEGORIES.SYMBOLS),
       label: CATEGORIES.SYMBOLS + " emoji"
-    }, React__default.createElement(IconSymbols, null)), React__default.createElement(Tabs.Tab, {
+    }, /*#__PURE__*/React__default.createElement(IconSymbols, null)), /*#__PURE__*/React__default.createElement(Tabs.Tab, {
       id: toId(CATEGORIES.FLAGS),
       label: CATEGORIES.FLAGS + " emoji"
-    }, React__default.createElement(IconFlags, null)));
+    }, /*#__PURE__*/React__default.createElement(IconFlags, null)));
   }
 
   function CategoryTabpanel(_ref) {
@@ -1726,13 +1758,13 @@
       }
     };
 
-    return React__default.createElement(Tabs.Tabpanel, {
+    return /*#__PURE__*/React__default.createElement(Tabs.Tabpanel, {
       id: toId(category)
-    }, React__default.createElement("input", {
+    }, /*#__PURE__*/React__default.createElement("input", {
       type: "text",
       placeholder: "Search ".concat(category, "..."),
       "data-emoji-searchinput": true
-    }), React__default.createElement("div", {
+    }), /*#__PURE__*/React__default.createElement("div", {
       "data-emoji-scroll-list": true,
       "data-emoji-width-count": "6",
       onClick: handleEmojiClick,
@@ -1742,7 +1774,7 @@
           emoji = _ref3[0],
           names = _ref3[1];
 
-      return React__default.createElement("button", {
+      return /*#__PURE__*/React__default.createElement("button", {
         key: emoji,
         type: "button",
         "data-emoji-button": true,
@@ -1763,39 +1795,39 @@
   var ALL = [].concat(FACES_AND_PEOPLE, ACTIVITIES, ANIMALS, FLAGS, FOOD_AND_DRINK, OBJECTS, SYMBOLS, TRAVEL_AND_PLACES);
 
   function CategoryTabpanels(props) {
-    return React__default.createElement(React__default.Fragment, null, React__default.createElement(CategoryTabpanel, {
+    return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement(CategoryTabpanel, {
       onClick: props.onClick,
       category: CATEGORIES.ALL,
       emoji: ALL
-    }), React__default.createElement(CategoryTabpanel, {
+    }), /*#__PURE__*/React__default.createElement(CategoryTabpanel, {
       onClick: props.onClick,
       category: CATEGORIES.FACES,
       emoji: FACES_AND_PEOPLE
-    }), React__default.createElement(CategoryTabpanel, {
+    }), /*#__PURE__*/React__default.createElement(CategoryTabpanel, {
       onClick: props.onClick,
       category: CATEGORIES.ANIMALS,
       emoji: ANIMALS
-    }), React__default.createElement(CategoryTabpanel, {
+    }), /*#__PURE__*/React__default.createElement(CategoryTabpanel, {
       onClick: props.onClick,
       category: CATEGORIES.FOODS,
       emoji: FOOD_AND_DRINK
-    }), React__default.createElement(CategoryTabpanel, {
+    }), /*#__PURE__*/React__default.createElement(CategoryTabpanel, {
       onClick: props.onClick,
       category: CATEGORIES.ACTIVITIES,
       emoji: ACTIVITIES
-    }), React__default.createElement(CategoryTabpanel, {
+    }), /*#__PURE__*/React__default.createElement(CategoryTabpanel, {
       onClick: props.onClick,
       category: CATEGORIES.TRAVEL_AND_PLACES,
       emoji: TRAVEL_AND_PLACES
-    }), React__default.createElement(CategoryTabpanel, {
+    }), /*#__PURE__*/React__default.createElement(CategoryTabpanel, {
       onClick: props.onClick,
       category: CATEGORIES.OBJECTS,
       emoji: OBJECTS
-    }), React__default.createElement(CategoryTabpanel, {
+    }), /*#__PURE__*/React__default.createElement(CategoryTabpanel, {
       onClick: props.onClick,
       category: CATEGORIES.SYMBOLS,
       emoji: SYMBOLS
-    }), React__default.createElement(CategoryTabpanel, {
+    }), /*#__PURE__*/React__default.createElement(CategoryTabpanel, {
       onClick: props.onClick,
       category: CATEGORIES.FLAGS,
       emoji: FLAGS
@@ -1918,13 +1950,13 @@
       }
     };
 
-    return React__default.createElement(React__default.Fragment, null, trigger, isOpen && React__default.createElement("div", {
+    return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, trigger, isOpen && /*#__PURE__*/React__default.createElement("div", {
       ref: listboxRef,
       onKeyDown: handleKeyboardClose,
       "data-emoji-listbox": true
-    }, React__default.createElement(Tabs, {
+    }, /*#__PURE__*/React__default.createElement(Tabs, {
       initialTab: CATEGORIES.ALL
-    }, React__default.createElement(CategoriesTablist, null), React__default.createElement(CategoryTabpanels, {
+    }, /*#__PURE__*/React__default.createElement(CategoriesTablist, null), /*#__PURE__*/React__default.createElement(CategoryTabpanels, {
       onClick: props.onEmojiSelect
     }))));
   }
@@ -1971,14 +2003,14 @@
     }
   }
 
-  var css = "[data-emoji-trigger] {\n  border: 1px solid slategrey;\n  border-radius: 3px;\n}\n\n[data-emoji-listbox] {\n  background: #fff;\n  border: 1px solid slategrey;\n  border-radius: 3px;\n  /* margin: 3px; */\n  position: fixed;\n}\n\n[data-emoji-button],\n[data-emoji-category-tab] {\n  border: none;\n  border-radius: 3px;\n  background: none;\n  padding: 2px;\n}\n\n[data-emoji-button]:hover,\n[data-emoji-category-tab]:hover {\n  background: gainsboro;\n}\n\n[data-emoji-category-tab] {\n  line-height: 0;\n  margin: 0 1px;\n}\n\n[data-emoji-list] {\n  display: flex;\n  flex-direction: column;\n}\n\n[data-emoji-button] {\n  font-size: 18px;\n  line-height: 1.3;\n}\n\n[data-emoji-button]::before {\n  content: \"\";\n  padding-left: 3px;\n}\n\n[data-emoji-category-tab][aria-selected=\"true\"] {\n  position: relative;\n}\n\n[data-emoji-category-tab][aria-selected=\"true\"] {\n  fill: steelblue;\n}\n\n[data-emoji-category-tab][aria-selected=\"true\"]::after {\n  content: \"\";\n  display: block;\n  width: 100%;\n  border-bottom: 2px solid steelblue;\n  position: absolute;\n  bottom: -2px;\n  left: 0;\n  border-top-right-radius: 3px;\n  border-top-left-radius: 3px;\n}\n\n[data-emoji-category-tablist] {\n  border-bottom: 1px solid slategrey;\n  display: flex;\n  justify-content: space-evenly;\n  padding: 2px 1px;\n}\n\n[data-emoji-searchinput] {\n  border: 1px solid slategrey;\n  border-radius: 3px;\n  margin: 6px;\n  padding: 4px 6px;\n}\n\n[data-emoji-scroll-list]:not([hidden]) {\n  display: grid;\n  grid-template-columns: repeat(7, 28px);\n  grid-template-rows: auto;\n  grid-column-gap: 3px;\n  max-height: 200px;\n  overflow-x: scroll;\n  padding: 2px 4px;\n}\n";
-  styleInject(css);
+  var css_248z = "[data-emoji-trigger] {\n  border: 1px solid slategrey;\n  border-radius: 3px;\n}\n\n[data-emoji-listbox] {\n  background: #fff;\n  border: 1px solid slategrey;\n  border-radius: 3px;\n  /* margin: 3px; */\n  position: fixed;\n}\n\n[data-emoji-button],\n[data-emoji-category-tab] {\n  border: none;\n  border-radius: 3px;\n  background: none;\n  padding: 2px;\n}\n\n[data-emoji-button]:hover,\n[data-emoji-category-tab]:hover {\n  background: gainsboro;\n}\n\n[data-emoji-category-tab] {\n  line-height: 0;\n  margin: 0 1px;\n}\n\n[data-emoji-list] {\n  display: flex;\n  flex-direction: column;\n}\n\n[data-emoji-button] {\n  font-size: 18px;\n  line-height: 1.3;\n}\n\n[data-emoji-button]::before {\n  content: \"\";\n  padding-left: 3px;\n}\n\n[data-emoji-category-tab][aria-selected=\"true\"] {\n  position: relative;\n}\n\n[data-emoji-category-tab][aria-selected=\"true\"] {\n  fill: steelblue;\n}\n\n[data-emoji-category-tab][aria-selected=\"true\"]::after {\n  content: \"\";\n  display: block;\n  width: 100%;\n  border-bottom: 2px solid steelblue;\n  position: absolute;\n  bottom: -2px;\n  left: 0;\n  border-top-right-radius: 3px;\n  border-top-left-radius: 3px;\n}\n\n[data-emoji-category-tablist] {\n  border-bottom: 1px solid slategrey;\n  display: flex;\n  justify-content: space-evenly;\n  padding: 2px 1px;\n}\n\n[data-emoji-searchinput] {\n  border: 1px solid slategrey;\n  border-radius: 3px;\n  margin: 6px;\n  padding: 4px 6px;\n}\n\n[data-emoji-scroll-list]:not([hidden]) {\n  display: grid;\n  grid-template-columns: repeat(7, 28px);\n  grid-template-rows: auto;\n  grid-column-gap: 3px;\n  max-height: 200px;\n  overflow-x: scroll;\n  padding: 2px 4px;\n}\n";
+  styleInject(css_248z);
 
   var Radio = function Radio(_ref) {
     var children = _ref.children,
         props = _objectWithoutProperties(_ref, ["children"]);
 
-    return React__default.createElement("div", null, React__default.createElement("label", null, React__default.createElement("input", _extends({}, props, {
+    return /*#__PURE__*/React__default.createElement("div", null, /*#__PURE__*/React__default.createElement("label", null, /*#__PURE__*/React__default.createElement("input", _extends({}, props, {
       type: "radio"
     })), children));
   };
@@ -1994,72 +2026,72 @@
         align = _useState4[0],
         setAlignment = _useState4[1];
 
-    return React__default.createElement("div", {
+    return /*#__PURE__*/React__default.createElement("div", {
       style: {
         width: "100vw",
         height: "100vh",
         margin: "25vh 0"
       }
-    }, React__default.createElement("fieldset", null, React__default.createElement("legend", null, "Positioning"), React__default.createElement(Radio, {
+    }, /*#__PURE__*/React__default.createElement("fieldset", null, /*#__PURE__*/React__default.createElement("legend", null, "Positioning"), /*#__PURE__*/React__default.createElement(Radio, {
       name: "positioning",
       value: "top",
       onChange: function onChange(e) {
         return setPosition(e.target.value);
       },
       checked: position === "top"
-    }, "Top"), React__default.createElement(Radio, {
+    }, "Top"), /*#__PURE__*/React__default.createElement(Radio, {
       name: "positioning",
       value: "bottom",
       onChange: function onChange(e) {
         return setPosition(e.target.value);
       },
       checked: position === "bottom"
-    }, "Bottom"), React__default.createElement(Radio, {
+    }, "Bottom"), /*#__PURE__*/React__default.createElement(Radio, {
       name: "positioning",
       value: "left",
       onChange: function onChange(e) {
         return setPosition(e.target.value);
       },
       checked: position === "left"
-    }, "Left"), React__default.createElement(Radio, {
+    }, "Left"), /*#__PURE__*/React__default.createElement(Radio, {
       name: "positioning",
       value: "right",
       onChange: function onChange(e) {
         return setPosition(e.target.value);
       },
       checked: position === "right"
-    }, "Right")), React__default.createElement("fieldset", null, React__default.createElement("legend", null, "Alignment"), React__default.createElement(Radio, {
+    }, "Right")), /*#__PURE__*/React__default.createElement("fieldset", null, /*#__PURE__*/React__default.createElement("legend", null, "Alignment"), /*#__PURE__*/React__default.createElement(Radio, {
       name: "alignment",
       value: "start",
       onChange: function onChange(e) {
         return setAlignment(e.target.value);
       },
       checked: align === "start"
-    }, "Start"), React__default.createElement(Radio, {
+    }, "Start"), /*#__PURE__*/React__default.createElement(Radio, {
       name: "alignment",
       value: "center",
       onChange: function onChange(e) {
         return setAlignment(e.target.value);
       },
       checked: align === "center"
-    }, "Center"), React__default.createElement(Radio, {
+    }, "Center"), /*#__PURE__*/React__default.createElement(Radio, {
       name: "alignment",
       value: "end",
       onChange: function onChange(e) {
         return setAlignment(e.target.value);
       },
       checked: align === "end"
-    }, "End")), React__default.createElement("div", {
+    }, "End")), /*#__PURE__*/React__default.createElement("div", {
       style: {
         textAlign: "center"
       }
-    }, React__default.createElement(ReactEmojiPickr, {
+    }, /*#__PURE__*/React__default.createElement(ReactEmojiPickr, {
       onEmojiSelect: function onEmojiSelect(e) {
         return console.log(e.target.value);
       },
       position: position,
       align: align
-    }, React__default.createElement(ReactEmojiPickr.Trigger, {
+    }, /*#__PURE__*/React__default.createElement(ReactEmojiPickr.Trigger, {
       "aria-label": "Select an emoji",
       id: "emojiBtnTrigger",
       style: {
@@ -2068,6 +2100,6 @@
     }, ":D"))));
   };
 
-  ReactDOM.render(React__default.createElement(App, null), document.getElementById("root"));
+  ReactDOM.render( /*#__PURE__*/React__default.createElement(App, null), document.getElementById("root"));
 
 })));
