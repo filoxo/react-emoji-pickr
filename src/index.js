@@ -1,4 +1,5 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useLayoutEffect } from "react";
+import PropTypes from "prop-types";
 import { Trigger } from "./Trigger";
 import Tabs from "./Tabs";
 import CATEGORIES from "./Category/Categories";
@@ -7,19 +8,102 @@ import CategoriesTabpanels from "./Category/CategoryTabpanels";
 
 import "./styles.css";
 
+const toPx = (v) => `${v}px`;
+
 export default function ReactEmojiPickr(props) {
   const [isOpen, setIsOpen] = React.useState(false);
   const trigger = React.cloneElement(React.Children.only(props.children), {
     "aria-expanded": isOpen ? "true" : null,
-    onClick: e => {
+    onClick: (e) => {
       setIsOpen(!isOpen);
-    }
+    },
   });
   const triggerRef = useRef();
+  const listboxRef = useRef();
+
+  const positionAndAlignListbox = () => {
+    const triggerRect = triggerRef.current.getBoundingClientRect();
+    const alignAxisVertical =
+      props.position === "top" || props.position === "bottom";
+    // reset all styles...
+    const style = {
+      bottom: "",
+      top: "",
+      left: "",
+      right: "",
+      transform: "",
+    };
+
+    switch (props.position) {
+      case "top":
+        style.bottom = toPx(
+          document.documentElement.clientHeight - triggerRect.top
+        );
+        break;
+      case "bottom":
+        style.top = toPx(triggerRect.bottom);
+        break;
+      case "left":
+        style.right = toPx(triggerRect.right);
+        break;
+      case "right":
+        style.left = toPx(triggerRect.right);
+        break;
+    }
+
+    switch (props.align) {
+      case "start":
+        if (alignAxisVertical) {
+          style.left = toPx(triggerRect.left);
+        } else {
+          style.top = toPx(triggerRect.top);
+        }
+        break;
+      case "center":
+        if (alignAxisVertical) {
+          style.left = toPx(triggerRect.left + triggerRect.width / 2);
+          style.transform = "translateX(-50%)";
+        } else {
+          style.top = toPx(triggerRect.top + triggerRect.height / 2);
+          style.transform = "translateY(-50%)";
+        }
+        break;
+      case "end":
+        if (alignAxisVertical) {
+          style.right = toPx(triggerRect.left);
+        } else {
+          style.bottom = toPx(
+            document.documentElement.clientHeight - triggerRect.bottom
+          );
+        }
+        break;
+    }
+
+    for (let s in style) {
+      listboxRef.current.style[s] = style[s];
+    }
+  };
 
   useEffect(() => {
     triggerRef.current = document.getElementById(trigger.props.id);
   }, []);
+
+  useLayoutEffect(() => {
+    if (isOpen) {
+      let timeout;
+      const rafPositionAndAlignListbox = () => {
+        if (timeout) window.cancelAnimationFrame(timeout);
+        timeout = window.requestAnimationFrame(positionAndAlignListbox);
+      };
+      positionAndAlignListbox();
+      window.addEventListener("scroll", rafPositionAndAlignListbox);
+      window.addEventListener("resize", rafPositionAndAlignListbox);
+      return function cleanup() {
+        window.removeEventListener("scroll", rafPositionAndAlignListbox);
+        window.removeEventListener("resize", rafPositionAndAlignListbox);
+      };
+    }
+  }, [isOpen, props]);
 
   const handleKeyboardClose = ({ key }) => {
     if (key === "Escape") {
@@ -27,11 +111,16 @@ export default function ReactEmojiPickr(props) {
       setIsOpen(false);
     }
   };
+
   return (
     <React.Fragment>
       {trigger}
       {isOpen && (
-        <div onKeyDown={handleKeyboardClose} data-emoji-listbox>
+        <div
+          ref={listboxRef}
+          onKeyDown={handleKeyboardClose}
+          data-emoji-listbox
+        >
           <Tabs initialTab={CATEGORIES.ALL}>
             <CategoriesTablist />
             <CategoriesTabpanels onClick={props.onEmojiSelect} />
@@ -43,6 +132,8 @@ export default function ReactEmojiPickr(props) {
 }
 
 ReactEmojiPickr.propTypes = {
+  position: PropTypes.oneOf(["top", "right", "bottom", "left"]),
+  align: PropTypes.oneOf(["start", "center", "end"]),
   children: function ReactEmojiPickrTriggerType(
     props,
     propName,
@@ -53,7 +144,12 @@ ReactEmojiPickr.propTypes = {
         `Invalid child supplied to ${componentName}. It must only render a ReactEmojiPickr.Trigger!`
       );
     }
-  }
+  },
+};
+
+ReactEmojiPickr.defaultProps = {
+  position: "top",
+  align: "center",
 };
 
 ReactEmojiPickr.Trigger = Trigger;

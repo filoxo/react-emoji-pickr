@@ -4,8 +4,11 @@
 }
 
 [data-emoji-listbox] {
+  background: #fff;
   border: 1px solid slategrey;
   border-radius: 3px;
+  /* margin: 3px; */
+  position: fixed;
 }
 
 [data-emoji-button],
