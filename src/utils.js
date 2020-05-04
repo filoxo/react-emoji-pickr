@@ -1,1 +1,1 @@
-export const toId = cat => cat.replace(/\W/g, "_");
+export const toId = (str) => str.replace(/\W/g, "_");
