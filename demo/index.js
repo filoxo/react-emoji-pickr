@@ -1646,7 +1646,14 @@
         setIsOpen(!isOpen);
       },
       ref: triggerRef
-    }); // TODO: maybe expose this as a prop so that consumers can provide their own logic?
+    });
+
+    var onEmojiSelectInternal = function onEmojiSelectInternal(e) {
+      var shouldRemainOpen = !!props.onEmojiSelect(e);
+      setIsOpen(shouldRemainOpen);
+      return e;
+    }; // TODO: maybe expose this as a prop so that consumers can provide their own logic?
+
 
     var positionAndAlignListbox = function positionAndAlignListbox() {
       var triggerRect = triggerRef.current.getBoundingClientRect();
@@ -1755,13 +1762,14 @@
     }, /*#__PURE__*/React__default['default'].createElement(Tabs, {
       initialTab: CATEGORIES.ALL
     }, /*#__PURE__*/React__default['default'].createElement(CategoriesTablist, null), /*#__PURE__*/React__default['default'].createElement(CategoryTabpanels, {
-      onClick: props.onEmojiSelect
+      onClick: onEmojiSelectInternal
     }))));
   }
 
   ReactEmojiPickr.propTypes = {
     position: PropTypes.oneOf(["top", "right", "bottom", "left"]),
     align: PropTypes.oneOf(["start", "center", "end"]),
+    onEmojiSelect: PropTypes.func.isRequired,
     children: function ReactEmojiPickrTriggerType(props, propName, componentName) {
       if (props[propName].type !== Trigger) {
         return new Error("Invalid child supplied to ".concat(componentName, ". It must only render a ReactEmojiPickr.Trigger!"));
@@ -1824,6 +1832,27 @@
         align = _useState4[0],
         setAlignment = _useState4[1];
 
+    var _useState5 = React.useState([]),
+        _useState6 = _slicedToArray$1(_useState5, 2),
+        selectedEmojis = _useState6[0],
+        setSelectedEmojis = _useState6[1];
+
+    var _useState7 = React.useState(false),
+        _useState8 = _slicedToArray$1(_useState7, 2),
+        keepEmojiMenuOpenAfterSelection = _useState8[0],
+        setKeepEmojiOpen = _useState8[1];
+
+    var handleKeepEmojiOpenSetting = function handleKeepEmojiOpenSetting() {
+      setKeepEmojiOpen(!keepEmojiMenuOpenAfterSelection);
+    };
+
+    var handleEmojiSelect = function handleEmojiSelect(evt) {
+      var emoji = evt.target.value;
+      console.log('selected emoji:', emoji);
+      setSelectedEmojis(selectedEmojis.concat(emoji));
+      return keepEmojiMenuOpenAfterSelection;
+    };
+
     return /*#__PURE__*/React__default['default'].createElement("div", {
       style: {
         width: "100vw",
@@ -1879,14 +1908,16 @@
         return setAlignment(e.target.value);
       },
       checked: align === "end"
-    }, "End")), /*#__PURE__*/React__default['default'].createElement("div", {
+    }, "End")), /*#__PURE__*/React__default['default'].createElement("div", null, /*#__PURE__*/React__default['default'].createElement("label", null, /*#__PURE__*/React__default['default'].createElement("input", {
+      type: "checkbox",
+      checked: keepEmojiMenuOpenAfterSelection,
+      onChange: handleKeepEmojiOpenSetting
+    }), "Keep emoji menu open after selection?")), /*#__PURE__*/React__default['default'].createElement("div", {
       style: {
         textAlign: "center"
       }
     }, /*#__PURE__*/React__default['default'].createElement(ReactEmojiPickr, {
-      onEmojiSelect: function onEmojiSelect(e) {
-        return console.log(e.target.value);
-      },
+      onEmojiSelect: handleEmojiSelect,
       position: position,
       align: align
     }, /*#__PURE__*/React__default['default'].createElement(ReactEmojiPickr.Trigger, {
@@ -1895,7 +1926,7 @@
       style: {
         margin: 3
       }
-    }, ":D"))));
+    }, ":D")), /*#__PURE__*/React__default['default'].createElement("p", null, "Selected emojis: ", selectedEmojis.join(' '), " ")));
   };
 
   ReactDOM__default['default'].render( /*#__PURE__*/React__default['default'].createElement(App, null), document.getElementById("root"));
