@@ -22,6 +22,12 @@ export default function ReactEmojiPickr(props) {
     ref: triggerRef,
   });
 
+  const onEmojiSelectInternal = (e) => {
+    const shouldRemainOpen = !!props.onEmojiSelect(e)
+    setIsOpen(shouldRemainOpen)
+    return e
+  }
+
   // TODO: maybe expose this as a prop so that consumers can provide their own logic?
   const positionAndAlignListbox = () => {
     const triggerRect = triggerRef.current.getBoundingClientRect();
@@ -132,7 +138,7 @@ export default function ReactEmojiPickr(props) {
         >
           <Tabs initialTab={CATEGORIES.ALL}>
             <CategoriesTablist />
-            <CategoriesTabpanels onClick={props.onEmojiSelect} />
+            <CategoriesTabpanels onClick={onEmojiSelectInternal} />
           </Tabs>
         </div>
       )}
