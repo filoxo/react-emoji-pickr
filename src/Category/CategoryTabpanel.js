@@ -1,9 +1,10 @@
-import React, { useRef, useCallback } from "react";
+import React, { useRef, useCallback, useState } from "react";
 import Tabs from "../Tabs/";
 import { toId, getNthSibling } from "../utils";
 
 export default function CategoryTabpanel({ category, emoji, onClick }) {
   const buttonsPerRow = useRef(1);
+  const [searchFilter, setSearchFilter] = useState('') 
   const containerWatchRef = useCallback((node) => {
     if (node !== null) {
       const containerWidth = node.getBoundingClientRect().width;
@@ -33,6 +34,9 @@ export default function CategoryTabpanel({ category, emoji, onClick }) {
         return;
     }
   };
+  const handleSearchFilter = (evt) =>  {
+    setSearchFilter(evt.target.value)
+  }
   const handleEmojiKeyboardNavigation = (e) => {
     const nextTarget = getFocusTarget(e.target, e.key);
     if (nextTarget) {
@@ -40,11 +44,17 @@ export default function CategoryTabpanel({ category, emoji, onClick }) {
       nextTarget.focus();
     }
   };
+  const emojisToDisplay = !searchFilter 
+    ? emoji 
+    : emoji.filter(([_e, names]) => 
+        names.some((name) => name.toLowerCase().includes(searchFilter.toLowerCase()))
+      )
   return (
     <Tabs.Tabpanel id={toId(category)}>
       <input
         type="text"
         placeholder={`Search ${category}...`}
+        onChange={handleSearchFilter}
         data-emoji-searchinput=""
       />
       <div
@@ -53,7 +63,7 @@ export default function CategoryTabpanel({ category, emoji, onClick }) {
         onClick={handleEmojiClick}
         onKeyDown={handleEmojiKeyboardNavigation}
       >
-        {emoji.map(([emoji, names], index) => (
+        {emojisToDisplay.map(([emoji, names], index) => (
           <button
             key={emoji}
             type="button"

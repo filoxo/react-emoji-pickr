@@ -1513,6 +1513,12 @@
         emoji = _ref.emoji,
         onClick = _ref.onClick;
     var buttonsPerRow = React.useRef(1);
+
+    var _useState = React.useState(''),
+        _useState2 = _slicedToArray(_useState, 2),
+        searchFilter = _useState2[0],
+        setSearchFilter = _useState2[1];
+
     var containerWatchRef = React.useCallback(function (node) {
       if (node !== null) {
         var containerWidth = node.getBoundingClientRect().width;
@@ -1547,6 +1553,10 @@
       }
     };
 
+    var handleSearchFilter = function handleSearchFilter(evt) {
+      setSearchFilter(evt.target.value);
+    };
+
     var handleEmojiKeyboardNavigation = function handleEmojiKeyboardNavigation(e) {
       var nextTarget = getFocusTarget(e.target, e.key);
 
@@ -1556,21 +1566,31 @@
       }
     };
 
+    var emojisToDisplay = !searchFilter ? emoji : emoji.filter(function (_ref2) {
+      var _ref3 = _slicedToArray(_ref2, 2);
+
+      _ref3[0];
+      var names = _ref3[1];
+      return names.some(function (name) {
+        return name.toLowerCase().includes(searchFilter.toLowerCase());
+      });
+    });
     return /*#__PURE__*/React__default['default'].createElement(Tabs.Tabpanel, {
       id: toId(category)
     }, /*#__PURE__*/React__default['default'].createElement("input", {
       type: "text",
       placeholder: "Search ".concat(category, "..."),
+      onChange: handleSearchFilter,
       "data-emoji-searchinput": ""
     }), /*#__PURE__*/React__default['default'].createElement("div", {
       "data-emoji-scroll-list": "",
       ref: containerWatchRef,
       onClick: handleEmojiClick,
       onKeyDown: handleEmojiKeyboardNavigation
-    }, emoji.map(function (_ref2, index) {
-      var _ref3 = _slicedToArray(_ref2, 2),
-          emoji = _ref3[0],
-          names = _ref3[1];
+    }, emojisToDisplay.map(function (_ref4, index) {
+      var _ref5 = _slicedToArray(_ref4, 2),
+          emoji = _ref5[0],
+          names = _ref5[1];
 
       return /*#__PURE__*/React__default['default'].createElement("button", {
         key: emoji,
