@@ -16,6 +16,19 @@ const Radio = ({ children, ...props }) => (
 const App = () => {
   const [position, setPosition] = useState("top");
   const [align, setAlignment] = useState("center");
+  const [selectedEmojis, setSelectedEmojis] = useState([])
+  const [keepEmojiMenuOpenAfterSelection, setKeepEmojiOpen] = useState(false)
+
+  const handleKeepEmojiOpenSetting = () => {
+    setKeepEmojiOpen(!keepEmojiMenuOpenAfterSelection)
+  }
+  
+  const handleEmojiSelect = (evt) => {
+    const emoji = evt.target.value
+    console.log('selected emoji:', emoji)
+    setSelectedEmojis(selectedEmojis.concat(emoji))
+    return keepEmojiMenuOpenAfterSelection
+  }
 
   return (
     <div
@@ -87,9 +100,15 @@ const App = () => {
           End
         </Radio>
       </fieldset>
+      <div>
+        <label>
+          <input type="checkbox" checked={keepEmojiMenuOpenAfterSelection} onChange={handleKeepEmojiOpenSetting} />
+          Keep emoji menu open after selection?
+        </label>
+      </div>
       <div style={{ textAlign: "center" }}>
         <EmojiPicker
-          onEmojiSelect={e => console.log(e.target.value)}
+          onEmojiSelect={handleEmojiSelect}
           position={position}
           align={align}
         >
@@ -101,6 +120,7 @@ const App = () => {
             :D
           </EmojiPicker.Trigger>
         </EmojiPicker>
+        <p>Selected emojis: {selectedEmojis.join(' ')} </p>
       </div>
     </div>
   );
