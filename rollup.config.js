@@ -1,5 +1,5 @@
 import pkg from "./package.json";
-import resolve from "@rollup/plugin-node-resolve";
+import { nodeResolve } from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import babel from "@rollup/plugin-babel";
 import { terser } from "rollup-plugin-terser";
@@ -31,13 +31,14 @@ export default [
     ],
     external: ["react", "react-dom"],
     plugins: [
-      resolve(),
+      nodeResolve(),
       babel({
         babelHelpers: "bundled",
         exclude: "node_modules/**",
       }),
       commonjs(),
       postcss({
+        plugins: [],
         extract: true,
       }),
       prod && terser(),
@@ -58,12 +59,11 @@ export default [
     },
     external: ["react", "react-dom"],
     plugins: [
-      resolve({
-        customResolveOptions: {
-          moduleDirectory: "dist",
-        },
+      nodeResolve({
+        moduleDirectories: ["dist"],
       }),
       babel({
+        babelHelpers: "bundled",
         exclude: "node_modules/**",
       }),
       htmlTemplate({
