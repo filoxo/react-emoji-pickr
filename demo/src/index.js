@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import ReactDOM from "react-dom";
+import React, { useState } from 'react'
+import ReactDOM from 'react-dom'
 
-import EmojiPicker from "react-emoji-pickr.esm";
-import "react-emoji-pickr.esm.css";
+import EmojiPicker from 'react-emoji-pickr.esm'
+import 'react-emoji-pickr.esm.css'
 
 const Radio = ({ children, ...props }) => (
   <div>
@@ -11,18 +11,18 @@ const Radio = ({ children, ...props }) => (
       {children}
     </label>
   </div>
-);
+)
 
 const App = () => {
-  const [position, setPosition] = useState("top");
-  const [align, setAlignment] = useState("center");
+  const [position, setPosition] = useState('top')
+  const [align, setAlignment] = useState('center')
   const [selectedEmojis, setSelectedEmojis] = useState([])
   const [keepEmojiMenuOpenAfterSelection, setKeepEmojiOpen] = useState(false)
 
   const handleKeepEmojiOpenSetting = () => {
     setKeepEmojiOpen(!keepEmojiMenuOpenAfterSelection)
   }
-  
+
   const handleEmojiSelect = (evt) => {
     const emoji = evt.target.value
     console.log('selected emoji:', emoji)
@@ -30,15 +30,15 @@ const App = () => {
     return keepEmojiMenuOpenAfterSelection
   }
 
-  const handleSetPosition = e => setPosition(e.target.value)
-  const handleSetAlignment = e => setAlignment(e.target.value)
+  const handleSetPosition = (e) => setPosition(e.target.value)
+  const handleSetAlignment = (e) => setAlignment(e.target.value)
 
   return (
     <div
       style={{
-        width: "100vw",
-        height: "100vh",
-        margin: "25vh 0"
+        width: '100vw',
+        height: '100vh',
+        margin: '25vh 0',
       }}
     >
       <fieldset>
@@ -47,7 +47,7 @@ const App = () => {
           name="positioning"
           value="top"
           onChange={handleSetPosition}
-          checked={position === "top"}
+          checked={position === 'top'}
         >
           Top
         </Radio>
@@ -55,7 +55,7 @@ const App = () => {
           name="positioning"
           value="bottom"
           onChange={handleSetPosition}
-          checked={position === "bottom"}
+          checked={position === 'bottom'}
         >
           Bottom
         </Radio>
@@ -63,7 +63,7 @@ const App = () => {
           name="positioning"
           value="left"
           onChange={handleSetPosition}
-          checked={position === "left"}
+          checked={position === 'left'}
         >
           Left
         </Radio>
@@ -71,7 +71,7 @@ const App = () => {
           name="positioning"
           value="right"
           onChange={handleSetPosition}
-          checked={position === "right"}
+          checked={position === 'right'}
         >
           Right
         </Radio>
@@ -82,7 +82,7 @@ const App = () => {
           name="alignment"
           value="start"
           onChange={handleSetAlignment}
-          checked={align === "start"}
+          checked={align === 'start'}
         >
           Start
         </Radio>
@@ -90,7 +90,7 @@ const App = () => {
           name="alignment"
           value="center"
           onChange={handleSetAlignment}
-          checked={align === "center"}
+          checked={align === 'center'}
         >
           Center
         </Radio>
@@ -98,18 +98,22 @@ const App = () => {
           name="alignment"
           value="end"
           onChange={handleSetAlignment}
-          checked={align === "end"}
+          checked={align === 'end'}
         >
           End
         </Radio>
       </fieldset>
       <div>
         <label>
-          <input type="checkbox" checked={keepEmojiMenuOpenAfterSelection} onChange={handleKeepEmojiOpenSetting} />
+          <input
+            type="checkbox"
+            checked={keepEmojiMenuOpenAfterSelection}
+            onChange={handleKeepEmojiOpenSetting}
+          />
           Keep emoji menu open after selection?
         </label>
       </div>
-      <div style={{ textAlign: "center" }}>
+      <div style={{ textAlign: 'center' }}>
         <EmojiPicker
           onEmojiSelect={handleEmojiSelect}
           position={position}
@@ -126,7 +130,7 @@ const App = () => {
         <p>Selected emojis: {selectedEmojis.join(' ')} </p>
       </div>
     </div>
-  );
-};
+  )
+}
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById('root'))

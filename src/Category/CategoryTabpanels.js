@@ -1,7 +1,7 @@
-import React from "react";
-import CATEGORIES from "./Categories";
-import CategoryTabpanel from "./CategoryTabpanel";
-import * as EMOJI from "../Emoji/Emojis";
+import React from 'react'
+import CATEGORIES from './Categories'
+import CategoryTabpanel from './CategoryTabpanel'
+import * as EMOJI from '../Emoji/Emojis'
 
 export default function CategoryTabpanels(props) {
   return (
@@ -52,5 +52,5 @@ export default function CategoryTabpanels(props) {
         emoji={EMOJI.FLAGS}
       />
     </>
-  );
+  )
 }

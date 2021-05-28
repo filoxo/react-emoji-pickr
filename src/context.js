@@ -1,7 +1,7 @@
-import { createContext } from "react";
+import { createContext } from 'react'
 
 const EmojiPickrContext = createContext({
-  isOpen: false
-});
+  isOpen: false,
+})
 
-export default EmojiPickrContext;
+export default EmojiPickrContext
