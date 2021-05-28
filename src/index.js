@@ -143,6 +143,7 @@ export default function ReactEmojiPickr(props) {
 ReactEmojiPickr.propTypes = {
   position: PropTypes.oneOf(["top", "right", "bottom", "left"]),
   align: PropTypes.oneOf(["start", "center", "end"]),
+  onEmojiSelect: PropTypes.func.isRequired,
   children: function ReactEmojiPickrTriggerType(
     props,
     propName,
