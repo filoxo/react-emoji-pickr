@@ -30,6 +30,9 @@ const App = () => {
     return keepEmojiMenuOpenAfterSelection
   }
 
+  const handleSetPosition = e => setPosition(e.target.value)
+  const handleSetAlignment = e => setAlignment(e.target.value)
+
   return (
     <div
       style={{
@@ -43,7 +46,7 @@ const App = () => {
         <Radio
           name="positioning"
           value="top"
-          onChange={e => setPosition(e.target.value)}
+          onChange={handleSetPosition}
           checked={position === "top"}
         >
           Top
@@ -51,7 +54,7 @@ const App = () => {
         <Radio
           name="positioning"
           value="bottom"
-          onChange={e => setPosition(e.target.value)}
+          onChange={handleSetPosition}
           checked={position === "bottom"}
         >
           Bottom
@@ -59,7 +62,7 @@ const App = () => {
         <Radio
           name="positioning"
           value="left"
-          onChange={e => setPosition(e.target.value)}
+          onChange={handleSetPosition}
           checked={position === "left"}
         >
           Left
@@ -67,7 +70,7 @@ const App = () => {
         <Radio
           name="positioning"
           value="right"
-          onChange={e => setPosition(e.target.value)}
+          onChange={handleSetPosition}
           checked={position === "right"}
         >
           Right
@@ -78,7 +81,7 @@ const App = () => {
         <Radio
           name="alignment"
           value="start"
-          onChange={e => setAlignment(e.target.value)}
+          onChange={handleSetAlignment}
           checked={align === "start"}
         >
           Start
@@ -86,7 +89,7 @@ const App = () => {
         <Radio
           name="alignment"
           value="center"
-          onChange={e => setAlignment(e.target.value)}
+          onChange={handleSetAlignment}
           checked={align === "center"}
         >
           Center
@@ -94,7 +97,7 @@ const App = () => {
         <Radio
           name="alignment"
           value="end"
-          onChange={e => setAlignment(e.target.value)}
+          onChange={handleSetAlignment}
           checked={align === "end"}
         >
           End

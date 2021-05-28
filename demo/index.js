@@ -1853,6 +1853,14 @@
       return keepEmojiMenuOpenAfterSelection;
     };
 
+    var handleSetPosition = function handleSetPosition(e) {
+      return setPosition(e.target.value);
+    };
+
+    var handleSetAlignment = function handleSetAlignment(e) {
+      return setAlignment(e.target.value);
+    };
+
     return /*#__PURE__*/React__default['default'].createElement("div", {
       style: {
         width: "100vw",
@@ -1862,51 +1870,37 @@
     }, /*#__PURE__*/React__default['default'].createElement("fieldset", null, /*#__PURE__*/React__default['default'].createElement("legend", null, "Positioning"), /*#__PURE__*/React__default['default'].createElement(Radio, {
       name: "positioning",
       value: "top",
-      onChange: function onChange(e) {
-        return setPosition(e.target.value);
-      },
+      onChange: handleSetPosition,
       checked: position === "top"
     }, "Top"), /*#__PURE__*/React__default['default'].createElement(Radio, {
       name: "positioning",
       value: "bottom",
-      onChange: function onChange(e) {
-        return setPosition(e.target.value);
-      },
+      onChange: handleSetPosition,
       checked: position === "bottom"
     }, "Bottom"), /*#__PURE__*/React__default['default'].createElement(Radio, {
       name: "positioning",
       value: "left",
-      onChange: function onChange(e) {
-        return setPosition(e.target.value);
-      },
+      onChange: handleSetPosition,
       checked: position === "left"
     }, "Left"), /*#__PURE__*/React__default['default'].createElement(Radio, {
       name: "positioning",
       value: "right",
-      onChange: function onChange(e) {
-        return setPosition(e.target.value);
-      },
+      onChange: handleSetPosition,
       checked: position === "right"
     }, "Right")), /*#__PURE__*/React__default['default'].createElement("fieldset", null, /*#__PURE__*/React__default['default'].createElement("legend", null, "Alignment"), /*#__PURE__*/React__default['default'].createElement(Radio, {
       name: "alignment",
       value: "start",
-      onChange: function onChange(e) {
-        return setAlignment(e.target.value);
-      },
+      onChange: handleSetAlignment,
       checked: align === "start"
     }, "Start"), /*#__PURE__*/React__default['default'].createElement(Radio, {
       name: "alignment",
       value: "center",
-      onChange: function onChange(e) {
-        return setAlignment(e.target.value);
-      },
+      onChange: handleSetAlignment,
       checked: align === "center"
     }, "Center"), /*#__PURE__*/React__default['default'].createElement(Radio, {
       name: "alignment",
       value: "end",
-      onChange: function onChange(e) {
-        return setAlignment(e.target.value);
-      },
+      onChange: handleSetAlignment,
       checked: align === "end"
     }, "End")), /*#__PURE__*/React__default['default'].createElement("div", null, /*#__PURE__*/React__default['default'].createElement("label", null, /*#__PURE__*/React__default['default'].createElement("input", {
       type: "checkbox",
