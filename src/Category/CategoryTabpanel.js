@@ -1,10 +1,12 @@
-import React, { useRef, useCallback, useState } from 'react'
+import React, { useRef, useCallback, useState, useContext } from 'react'
 import Tabs from '../Tabs/'
 import { toId, getNthSibling } from '../utils'
+import EmojiPickrClickContext from '../context'
 
-export default function CategoryTabpanel({ category, emoji, onClick }) {
+export default function CategoryTabpanel({ category, emoji }) {
   const buttonsPerRow = useRef(1)
   const [searchFilter, setSearchFilter] = useState('')
+  const onClick = useContext(EmojiPickrClickContext)
   const containerWatchRef = useCallback((node) => {
     if (node !== null) {
       const containerWidth = node.getBoundingClientRect().width

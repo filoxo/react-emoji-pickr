@@ -1,7 +1,5 @@
 import { createContext } from 'react'
 
-const EmojiPickrContext = createContext({
-  isOpen: false,
-})
+const EmojiPickrClickContext = createContext(() => {})
 
-export default EmojiPickrContext
+export default EmojiPickrClickContext

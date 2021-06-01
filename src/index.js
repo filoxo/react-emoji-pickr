@@ -5,6 +5,7 @@ import Tabs from './Tabs'
 import CATEGORIES from './Category/Categories'
 import CategoriesTablist from './Category/CategoriesTablist'
 import CategoriesTabpanels from './Category/CategoryTabpanels'
+import EmojiPickrClickContext from './context'
 import { toPx } from './utils'
 
 import './styles.css'
@@ -91,6 +92,7 @@ export default function ReactEmojiPickr(props) {
       listboxRef.current.style[s] = style[s]
     }
   }
+
   useLayoutEffect(() => {
     if (isOpen) {
       let timeout
@@ -136,10 +138,12 @@ export default function ReactEmojiPickr(props) {
           onKeyDown={handleKeyboardClose}
           data-emoji-listbox
         >
-          <Tabs initialTab={CATEGORIES.ALL}>
-            <CategoriesTablist />
-            <CategoriesTabpanels onClick={onEmojiSelectInternal} />
-          </Tabs>
+          <EmojiPickrClickContext.Provider value={onEmojiSelectInternal}>
+            <Tabs initialTab={CATEGORIES.ALL}>
+              <CategoriesTablist />
+              <CategoriesTabpanels />
+            </Tabs>
+          </EmojiPickrClickContext.Provider>
         </div>
       )}
     </React.Fragment>
