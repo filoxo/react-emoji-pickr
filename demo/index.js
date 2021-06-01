@@ -778,12 +778,12 @@
       if (o) {
         var e = f.current && f.current.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
         e && e.focus();
-      }
+      } else c.current && c.current.focus();
     }, [o]);
     return /*#__PURE__*/e__default['default'].createElement(e__default['default'].Fragment, null, _, o && /*#__PURE__*/e__default['default'].createElement("div", {
       ref: f,
       onKeyDown: function onKeyDown(e) {
-        "Escape" === e.key && (c.current && c.current.focus(), i(!1));
+        "Escape" === e.key && i(!1);
       },
       "data-emoji-listbox": !0
     }, /*#__PURE__*/e__default['default'].createElement(ie, {

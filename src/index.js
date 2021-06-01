@@ -116,12 +116,13 @@ export default function ReactEmojiPickr(props) {
           'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
         )
       if (firstFocusableElem) firstFocusableElem.focus()
+    } else {
+      triggerRef.current && triggerRef.current.focus()
     }
   }, [isOpen])
 
   const handleKeyboardClose = ({ key }) => {
     if (key === 'Escape') {
-      triggerRef.current && triggerRef.current.focus()
       setIsOpen(false)
     }
   }
