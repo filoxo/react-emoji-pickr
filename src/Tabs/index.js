@@ -1,10 +1,10 @@
-import { Tab } from "./Tab";
-import { Tablist } from "./Tablist";
-import { Tabpanel } from "./Tabpanel";
-import { Tabs } from "./Tabs";
+import { Tab } from './Tab'
+import { Tablist } from './Tablist'
+import { Tabpanel } from './Tabpanel'
+import { Tabs } from './Tabs'
 
-Tabs.Tab = Tab;
-Tabs.Tablist = Tablist;
-Tabs.Tabpanel = Tabpanel;
+Tabs.Tab = Tab
+Tabs.Tablist = Tablist
+Tabs.Tabpanel = Tabpanel
 
-export default Tabs;
+export default Tabs

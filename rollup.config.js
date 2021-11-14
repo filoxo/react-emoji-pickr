@@ -1,43 +1,44 @@
-import pkg from "./package.json";
-import resolve from "@rollup/plugin-node-resolve";
-import commonjs from "@rollup/plugin-commonjs";
-import babel from "@rollup/plugin-babel";
-import { terser } from "rollup-plugin-terser";
-import serve from "rollup-plugin-serve";
-import livereload from "rollup-plugin-livereload";
-import htmlTemplate from "rollup-plugin-generate-html-template";
-import postcss from "rollup-plugin-postcss";
-import filesize from "rollup-plugin-filesize";
+import pkg from './package.json'
+import { nodeResolve } from '@rollup/plugin-node-resolve'
+import commonjs from '@rollup/plugin-commonjs'
+import babel from '@rollup/plugin-babel'
+import { terser } from 'rollup-plugin-terser'
+import serve from 'rollup-plugin-serve'
+import livereload from 'rollup-plugin-livereload'
+import htmlTemplate from 'rollup-plugin-generate-html-template'
+import postcss from 'rollup-plugin-postcss'
+import filesize from 'rollup-plugin-filesize'
 
-const prod = process.env.NODE_ENV === "production";
+const prod = process.env.NODE_ENV === 'production'
 
 export default [
   {
-    input: "src/index.js",
+    input: 'src/index.js',
     output: [
       {
-        name: "ReactEmojiPickr",
+        name: 'ReactEmojiPickr',
         file: pkg.browser,
-        format: "umd",
+        format: 'umd',
         globals: {
-          react: "React",
-          "react-dom": "ReactDOM",
+          react: 'React',
+          'react-dom': 'ReactDOM',
         },
       },
       {
         file: pkg.module,
-        format: "es",
+        format: 'es',
       },
     ],
-    external: ["react", "react-dom"],
+    external: ['react', 'react-dom'],
     plugins: [
-      resolve(),
+      nodeResolve(),
       babel({
-        babelHelpers: "bundled",
-        exclude: "node_modules/**",
+        babelHelpers: 'bundled',
+        exclude: 'node_modules/**',
       }),
       commonjs(),
       postcss({
+        plugins: [],
         extract: true,
       }),
       prod && terser(),
@@ -47,32 +48,31 @@ export default [
     ],
   },
   {
-    input: "demo/src/index.js",
+    input: 'demo/src/index.js',
     output: {
-      file: "demo/index.js",
-      format: "umd",
+      file: 'demo/index.js',
+      format: 'umd',
       globals: {
-        react: "React",
-        "react-dom": "ReactDOM",
+        react: 'React',
+        'react-dom': 'ReactDOM',
       },
     },
-    external: ["react", "react-dom"],
+    external: ['react', 'react-dom'],
     plugins: [
-      resolve({
-        customResolveOptions: {
-          moduleDirectory: "dist",
-        },
+      nodeResolve({
+        moduleDirectories: ['dist'],
       }),
       babel({
-        exclude: "node_modules/**",
+        babelHelpers: 'bundled',
+        exclude: 'node_modules/**',
       }),
       htmlTemplate({
-        template: "demo/src/index.html",
-        target: "demo/index.html",
+        template: 'demo/src/index.html',
+        target: 'demo/index.html',
       }),
       postcss(),
-      !prod && serve("demo"),
-      !prod && livereload(["dist", "demo"]),
+      !prod && serve('demo'),
+      !prod && livereload(['dist', 'demo']),
     ],
   },
-];
+]
